@@ -1,0 +1,39 @@
+.aboutPage {
+  background-color: hsl(210, 17%, 98%);
+  min-height: 100vh;
+  padding: 4rem;
+}
+
+.aboutHero {
+  background: linear-gradient(to right, #0d6efd, #0a58ca);
+  color: white;
+  padding: 100px 20px;
+  border-radius: 10px;
+}
+
+.aboutHero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.aboutHero p {
+  font-size: 1.2rem;
+}
+.marginTop {
+  margin-top: 2rem;
+}
+.aboutText {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .aboutHero {
+    padding: 60px 15px;
+  }
+
+  .aboutHero h1 {
+    font-size: 2rem;
+  }
+}

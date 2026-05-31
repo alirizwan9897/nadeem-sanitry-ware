@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Ceramic Wash Basin",
+    "description": "Elegant ceramic wash basin with smooth finish.",
+    "price": 2500,
+    "image": "/images/wash-basin.jpg",
+    "category": "Basins"
+  },
+  {
+    "id": 2,
+    "name": "Wall Mounted Toilet",
+    "description": "Compact wall-mounted toilet with modern design.",
+    "price": 4500,
+    "image": "/images/toilet.jpg",
+    "category": "Toilets"
+  },
+  {
+    "id": 3,
+    "name": "Luxury Bathtub",
+    "description": "Spacious bathtub with premium build quality.",
+    "price": 12000,
+    "image": "/images/bathtub.jpg",
+    "category": "Bathtubs"
+  },
+  {
+    "id": 4,
+    "name": "Chrome Faucet",
+    "description": "Durable chrome-plated faucet with sleek design.",
+    "price": 1500,
+    "image": "/images/faucet.jpg",
+    "category": "Faucets"
+  },
+  {
+    "id": 5,
+    "name": "Shower Set",
+    "description": "Complete shower set with adjustable spray modes.",
+    "price": 3500,
+    "image": "/images/shower.jpg",
+    "category": "Showers"
+  }
+]
