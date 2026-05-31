@@ -9,10 +9,7 @@ body{
   background:#fff;
 }
 
-/* Navbar */
-
 .navbar{
-  position:sticky;
   top:0;
   z-index:1000;
   display:flex;
@@ -95,6 +92,10 @@ body{
   border-bottom:1px solid #eee;
 }
 
+.menu-overlay{
+  display:none;
+}
+
 .menu a{
   text-decoration:none;
   color:#111827;
@@ -141,25 +142,46 @@ body{
   }
 
   .menu{
-    display:none;
+    position:fixed;
+    top:0;
+    left:-280px;
+    width:280px;
+    height:100vh;
+    display:flex;
     flex-direction:column;
-    align-items:center;
-    width:100%;
-    padding:16px 20px;
-    border-top:1px solid #ddd;
-    border-bottom:1px solid #ddd;
+    align-items:flex-start;
+    justify-content:flex-start;
+    padding:60px 20px 20px 20px;
+    border-top:none;
+    border-bottom:none;
     background:#ffffff;
+    box-shadow:2px 0 16px rgba(0,0,0,0.15);
+    transition:left 0.3s ease;
+    z-index:999;
+    gap:0;
   }
 
   .menu.open{
-    display:flex;
+    left:0;
+  }
+
+  .menu-overlay{
+    display:block;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(0,0,0,0.5);
+    z-index:998;
   }
 
   .menu a{
     width:100%;
-    padding:10px 0;
-    text-align:center;
+    padding:14px 12px;
+    text-align:left;
     border-bottom:1px solid #eee;
+    display:block;
   }
 
   .menu a:last-child{
@@ -325,6 +347,8 @@ body{
 .card-body h3{
   margin-bottom:12px;
   font-size:20px;
+  color:#111827;
+  font-weight:700;
 }
 
 .card-body p{
@@ -608,6 +632,8 @@ body{
 .card-body h3{
   margin-bottom:12px;
   font-size:20px;
+  color:#111827;
+  font-weight:700;
 }
 
 .card-body p{
@@ -627,6 +653,8 @@ body{
 .card-body h3{
   margin-bottom:12px;
   font-size:20px;
+  color:#111827;
+  font-weight:700;
 }
 
 .card-body p{

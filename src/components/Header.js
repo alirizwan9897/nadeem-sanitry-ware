@@ -67,6 +67,13 @@ export default function Header() {
         <Link href="/products?category=Luxury">Luxury Collection</Link>
         <Link href="/about">About Us</Link>
       </div>
+
+      {menuOpen && (
+        <div
+          className="menu-overlay"
+          onClick={() => setMenuOpen(false)}
+        ></div>
+      )}
     </>
   );
 }
