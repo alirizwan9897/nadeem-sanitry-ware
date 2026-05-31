@@ -1,6 +1,4 @@
-export default function ProductCard({ product,
-  addToCart,
-  buyNow, }) {
+export default function ProductCard({ product }) {
   return (
     <div style={{
       border: "1px solid #ddd",

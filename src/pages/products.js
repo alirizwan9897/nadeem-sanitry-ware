@@ -1,49 +1,48 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 const CART_STORAGE_KEY = "glanza-cart";
 
-const products = [
-  {
-    id: 1,
-    name: "Ceramic Wash Basin",
-    price: 2500,
-    image: "/images/wash-basin.jpg",
-  },
-  {
-    id: 2,
-    name: "Wall Mounted Toilet",
-    price: 4500,
-    image: "/images/toilet.jpg",
-  },
-  {
-    id: 3,
-    name: "Luxury Bathtub",
-    price: 12000,
-    image: "/images/bathtub.jpg",
-  },
-  {
-    id: 4,
-    name: "Chrome Faucet",
-    price: 1500,
-    image: "/images/faucet.jpg",
-  },
-];
+const CATEGORY_FILTERS = {
+  All: null,
+  SanitaryWare: ["Basins", "Toilets", "Faucets", "Showers"],
+  Faucets: ["Faucets"],
+  Luxury: ["Bathtubs"],
+};
+
+const CATEGORY_LABELS = {
+  All: "All Products",
+  SanitaryWare: "Sanitary Ware",
+  Faucets: "Faucets",
+  Luxury: "Luxury",
+};
 
 export default function Home() {
+  const searchParams = useSearchParams();
+  const selectedCategory = searchParams.get("category") || "All";
 
+  const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
     const stored = localStorage.getItem(CART_STORAGE_KEY);
     if (stored) {
       setCart(JSON.parse(stored));
     }
     setIsLoaded(true);
+
+    fetch("/data/products.json")
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((error) => {
+        console.error("Failed to load products:", error);
+      });
   }, []);
 
   useEffect(() => {
@@ -66,11 +65,21 @@ export default function Home() {
     setCart((prev) => prev.filter((_, itemIndex) => itemIndex !== index));
   };
 
+  const filteredProducts = useMemo(() => {
+    const allowedCategories = CATEGORY_FILTERS[selectedCategory] || null;
+    if (!allowedCategories) {
+      return products;
+    }
+    return products.filter((product) => allowedCategories.includes(product.category));
+  }, [products, selectedCategory]);
+
+  const activeLabel = CATEGORY_LABELS[selectedCategory] || selectedCategory;
+
   return (
     <div className="products">
 
       <div className="products-headline">
-        <h1>Our Products</h1>
+        <h1>{activeLabel}</h1>
         <div className="cart-button-row">
           <span>Cart Items: {cart.length}</span>
           <Link href="/cart" className="goto-cart-btn">
@@ -79,44 +88,50 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="product-grid">
+      {products.length === 0 ? (
+        <p>Loading products...</p>
+      ) : filteredProducts.length === 0 ? (
+        <p>No products found for this category.</p>
+      ) : (
+        <div className="product-grid">
 
-        {products.map((product) => (
-          <div className="card" key={product.id}>
+          {filteredProducts.map((product) => (
+            <div className="card" key={product.id}>
 
-            <img src={product.image} alt={product.name} />
+              <img src={product.image} alt={product.name} />
 
-            <div className="card-body">
+              <div className="card-body">
 
-              <h3>{product.name}</h3>
+                <h3>{product.name}</h3>
 
-              <p>₹{product.price}</p>
+                <p>₹{product.price}</p>
 
-              {/* Buttons */}
-              <div className="btn-group">
+                {/* Buttons */}
+                <div className="btn-group">
 
-                <button
-                  className="cart-btn"
-                  onClick={() => addToCart(product)}
-                >
-                  Add to Cart
-                </button>
+                  <button
+                    className="cart-btn"
+                    onClick={() => addToCart(product)}
+                  >
+                    Add to Cart
+                  </button>
 
-                <button
-                  className="buy-btn"
-                  onClick={() => buyNow(product)}
-                >
-                  Buy Now
-                </button>
+                  <button
+                    className="buy-btn"
+                    onClick={() => buyNow(product)}
+                  >
+                    Buy Now
+                  </button>
+
+                </div>
 
               </div>
 
             </div>
+          ))}
 
-          </div>
-        ))}
-
-      </div>
+        </div>
+      )}
     </div>
   );
 }

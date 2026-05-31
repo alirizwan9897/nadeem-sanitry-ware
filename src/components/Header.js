@@ -8,7 +8,6 @@ export default function Header() {
     <>
       <header className="navbar">
         <div className="navbar-left">
-          <div className="logo">GLANZA</div>
           <button
             className="mobile-menu-btn"
             onClick={() => setMenuOpen((open) => !open)}
@@ -17,6 +16,7 @@ export default function Header() {
           >
             Menu ☰
           </button>
+          <div className="logo">GLANZA</div>
         </div>
 
         <input
@@ -35,7 +35,7 @@ export default function Header() {
       <div className={`menu ${menuOpen ? 'open' : ''}`}>
         <Link href="/products">Home</Link>
         <Link href="/products">All Collections</Link>
-        <Link href="/products?category=Sanitary%20Ware">Sanitary Ware</Link>
+        <Link href="/products?category=SanitaryWare">Sanitary Ware</Link>
         <Link href="/products?category=Faucets">Faucets</Link>
         <Link href="/products?category=Luxury">Luxury Collection</Link>
         <Link href="/about">About Us</Link>
