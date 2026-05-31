@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+
+const CART_STORAGE_KEY = "glanza-cart";
 
 const products = [
   {
@@ -32,12 +35,26 @@ const products = [
 export default function Home() {
 
   const [cart, setCart] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const stored = localStorage.getItem(CART_STORAGE_KEY);
+    if (stored) {
+      setCart(JSON.parse(stored));
+    }
+    setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isLoaded || typeof window === "undefined") return;
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  }, [cart, isLoaded]);
 
   // Add To Cart Function
   const addToCart = (product) => {
-    setCart([...cart, product]);
-
-    alert(`${product.name} added to cart`);
+    setCart((prev) => [...prev, product]);
+    alert(`${product.name} added to cart! Go to cart to view or buy.`);
   };
 
   // Buy Now Function
@@ -45,13 +62,22 @@ export default function Home() {
     alert(`Proceeding to buy ${product.name}`);
   };
 
+  const removeFromCart = (index) => {
+    setCart((prev) => prev.filter((_, itemIndex) => itemIndex !== index));
+  };
+
   return (
     <div className="products">
 
-      <h1>Our Products</h1>
-
-      {/* Cart Count */}
-      <h2>Cart Items: {cart.length}</h2>
+      <div className="products-headline">
+        <h1>Our Products</h1>
+        <div className="cart-button-row">
+          <span>Cart Items: {cart.length}</span>
+          <Link href="/cart" className="goto-cart-btn">
+            Go to Cart
+          </Link>
+        </div>
+      </div>
 
       <div className="product-grid">
 
