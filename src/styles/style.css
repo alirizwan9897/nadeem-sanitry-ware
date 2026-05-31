@@ -700,3 +700,30 @@ body{
   object-fit:cover;
   border-radius:8px;
 }
+.hero-section {
+  width: 80%;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.hero-section h1 {
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+}
+
+.hero-section p {
+  margin-bottom: 20px;
+  color: #666;
+}
+.swiper {
+  width: 100%;
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

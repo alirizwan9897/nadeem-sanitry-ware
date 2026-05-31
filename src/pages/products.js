@@ -92,7 +92,6 @@ export default function Home() {
 
   return (
     <div className="products">
-
       <div className="products-headline">
         <h1>{activeLabel}</h1>
         <div className="cart-button-row">
@@ -102,49 +101,36 @@ export default function Home() {
           </Link>
         </div>
       </div>
-
       {products.length === 0 ? (
         <p>Loading products...</p>
       ) : filteredProducts.length === 0 ? (
         <p>No products found. Try a different search or category.</p>
       ) : (
         <div className="product-grid">
-
           {filteredProducts.map((product) => (
             <div className="card" key={product.id}>
-
               <img src={product.image} alt={product.name} />
-
               <div className="card-body">
-
                 <h3>{product.name}</h3>
-
                 <p>₹{product.price}</p>
-
                 {/* Buttons */}
                 <div className="btn-group">
-
                   <button
                     className="cart-btn"
                     onClick={() => addToCart(product)}
                   >
                     Add to Cart
                   </button>
-
                   <button
                     className="buy-btn"
                     onClick={() => buyNow(product)}
                   >
                     Buy Now
                   </button>
-
                 </div>
-
               </div>
-
             </div>
           ))}
-
         </div>
       )}
     </div>

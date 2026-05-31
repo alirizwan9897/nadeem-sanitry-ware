@@ -1,15 +1,13 @@
+import HeroSlider from "../components/HeroSlider";
 
 export default function Home() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="hero">
-        <div className="overlay">
-          <h1>Luxury Bath Fittings</h1>
-          <p>Modern Bathroom Accessories & Premium Sanitary Ware</p>
-          <button>Explore Collection</button>
-        </div>
-      </section>
+    <div className="hero-section">
+      <h1>Welcome to Nadeem Sanitary Ware</h1>
+      <p>Your one-stop shop for high-quality sanitary products.</p>
+      <HeroSlider />
+     </div>
     </>
   );
 }
