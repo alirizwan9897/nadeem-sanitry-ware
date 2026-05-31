@@ -1,10 +1,23 @@
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <>
       <header className="navbar">
-        <div className="logo">GLANZA</div>
+        <div className="navbar-left">
+          <div className="logo">GLANZA</div>
+          <button
+            className="mobile-menu-btn"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-label="Toggle menu"
+          >
+            Menu ☰
+          </button>
+        </div>
 
         <input
           type="text"
@@ -19,7 +32,7 @@ export default function Header() {
         </div>
       </header>
 
-      <div className="menu">
+      <div className={`menu ${menuOpen ? 'open' : ''}`}>
         <Link href="/products">Home</Link>
         <Link href="/products">All Collections</Link>
         <Link href="/products?category=Sanitary%20Ware">Sanitary Ware</Link>
