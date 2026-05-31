@@ -23,6 +23,7 @@ const CATEGORY_LABELS = {
 export default function Home() {
   const searchParams = useSearchParams();
   const selectedCategory = searchParams.get("category") || "All";
+  const searchQuery = searchParams.get("search") || "";
 
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
@@ -66,14 +67,28 @@ export default function Home() {
   };
 
   const filteredProducts = useMemo(() => {
-    const allowedCategories = CATEGORY_FILTERS[selectedCategory] || null;
-    if (!allowedCategories) {
-      return products;
-    }
-    return products.filter((product) => allowedCategories.includes(product.category));
-  }, [products, selectedCategory]);
+    let result = products;
 
-  const activeLabel = CATEGORY_LABELS[selectedCategory] || selectedCategory;
+    // Filter by category
+    const allowedCategories = CATEGORY_FILTERS[selectedCategory] || null;
+    if (allowedCategories) {
+      result = result.filter((product) => allowedCategories.includes(product.category));
+    }
+
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      result = result.filter((product) =>
+        product.name.toLowerCase().includes(query) ||
+        product.description.toLowerCase().includes(query) ||
+        product.category.toLowerCase().includes(query)
+      );
+    }
+
+    return result;
+  }, [products, selectedCategory, searchQuery]);
+
+  const activeLabel = searchQuery ? `Search: "${searchQuery}"` : CATEGORY_LABELS[selectedCategory] || selectedCategory;
 
   return (
     <div className="products">
@@ -91,7 +106,7 @@ export default function Home() {
       {products.length === 0 ? (
         <p>Loading products...</p>
       ) : filteredProducts.length === 0 ? (
-        <p>No products found for this category.</p>
+        <p>No products found. Try a different search or category.</p>
       ) : (
         <div className="product-grid">
 

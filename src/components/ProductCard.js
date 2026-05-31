@@ -15,7 +15,7 @@ export default function ProductCard({ product }) {
         alt={product.name} 
         style={{ width: "100%", height: "180px", objectFit: "cover", borderRadius: "6px" }}
       />
-      <h3>{product.name}</h3>
+      <h3 style={{ color: "#111827", fontWeight: "700", margin: "12px 0 8px 0" }}>{product.name}</h3>
       <p>{product.description}</p>
       <strong>₹{product.price}</strong>
     </div>

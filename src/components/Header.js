@@ -1,8 +1,25 @@
 import Link from 'next/link';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
+  const router = useRouter();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchInput.trim()) {
+      router.push(`/products?search=${encodeURIComponent(searchInput)}`);
+    } else {
+      router.push('/products');
+    }
+  };
+
+  const handleClear = () => {
+    setSearchInput('');
+    router.push('/products');
+  };
 
   return (
     <>
@@ -19,11 +36,21 @@ export default function Header() {
           <div className="logo">GLANZA</div>
         </div>
 
-        <input
-          type="text"
-          placeholder="Search the store"
-          className="search"
-        />
+        <form onSubmit={handleSearch} style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          <input
+            type="text"
+            placeholder="Search the store"
+            className="search"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+          <button type="submit" style={{ padding: '8px 16px', background: '#0ea5e9', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: '600' }}>
+            Search
+          </button>
+          <button type="button" onClick={handleClear} style={{ padding: '8px 16px', background: '#6b7280', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: '600' }}>
+            Clear
+          </button>
+        </form>
 
         <div className="nav-icons">
           <Link href="/signin">Sign in</Link>
