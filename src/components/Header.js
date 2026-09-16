@@ -1,12 +1,10 @@
 import Link from 'next/link';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-
+import { useRouter } from 'next/router';
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const router = useRouter();
-
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchInput.trim()) {
@@ -15,12 +13,10 @@ export default function Header() {
       router.push('/products');
     }
   };
-
   const handleClear = () => {
     setSearchInput('');
     router.push('/products');
   };
-
   return (
     <>
       <header className="navbar">
@@ -33,9 +29,8 @@ export default function Header() {
           >
             Menu ☰
           </button>
-          <div className="logo">GLANZA</div>
+          <div className="logo">🍗 CRISPY CHICKEN</div>
         </div>
-
         <form onSubmit={handleSearch} style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <input
             type="text"
@@ -51,23 +46,21 @@ export default function Header() {
             Clear
           </button>
         </form>
-
         <div className="nav-icons">
           <Link href="/signin">Sign in</Link>
+          <Link href="/signup">Sign up</Link>
           <Link href="/enquiry">Enquiry</Link>
           <Link href="/cart">Cart</Link>
         </div>
       </header>
-
       <div className={`menu ${menuOpen ? 'open' : ''}`}>
-        <Link href="/products">Home</Link>
-        <Link href="/products">All Collections</Link>
-        <Link href="/products?category=SanitaryWare">Sanitary Ware</Link>
-        <Link href="/products?category=Faucets">Faucets</Link>
-        <Link href="/products?category=Luxury">Luxury Collection</Link>
+        <Link href="/">Home</Link>
+        <Link href="/products">All foods</Link>
+        <Link href="/products?category=Biryani">Biryani</Link>
+        <Link href="/products?category=Veg">Veg </Link>
+        <Link href="/products?category=Chicken Gravy">Chicken Gravy</Link>
         <Link href="/about">About Us</Link>
       </div>
-
       {menuOpen && (
         <div
           className="menu-overlay"

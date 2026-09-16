@@ -3,8 +3,15 @@ const nextConfig = {
   /* config options here */
   reactCompiler: true,
   reactStrictMode: true,
-    output: 'export',
-
+  images: {
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

@@ -1,82 +1,124 @@
 [
   {
     "id": 1,
-    "name": "Ceramic Wash Basin",
-    "description": "Elegant ceramic wash basin with smooth finish.",
-    "price": 2500,
-    "image": "/images/wash-basin.jpg",
-    "category": "Basins"
+    "name": "Grilled Chicken Breast",
+    "description": "Tender, flame-grilled chicken breast marinated with special spices.",
+    "price": 250,
+    "image": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?q=80&w=500&auto=format&fit=crop",
+    "category": "All foods"
   },
   {
     "id": 2,
-    "name": "Wall Mounted Toilet",
-    "description": "Compact wall-mounted toilet with modern design.",
-    "price": 4500,
-    "image": "/images/toilet.jpg",
-    "category": "Toilets"
+    "name": "Spicy Fried Chicken Wings",
+    "description": "Crispy golden fried chicken wings with fiery spice blend.",
+    "price": 280,
+    "image": "images/fried chicken.jpeg",
+    "category": "All foods"
   },
   {
     "id": 3,
-    "name": "Luxury Bathtub",
-    "description": "Spacious bathtub with premium build quality.",
-    "price": 12000,
-    "image": "/images/bathtub.jpg",
-    "category": "Bathtubs"
+    "name": "Tandoori Chicken Leg Piece",
+    "description": "Succulent tandoori chicken with aromatic spices and herbs.",
+    "price": 320,
+    "image": " images/fried chicken1.jpeg",
+    "category": "All foods"
   },
   {
     "id": 4,
-    "name": "Chrome Faucet",
-    "description": "Durable chrome-plated faucet with sleek design.",
-    "price": 1500,
-    "image": "/images/faucet.jpg",
-    "category": "Faucets"
+    "name": "Butter Chicken Gravy",
+    "description": "Creamy butter chicken curry with authentic Indian spices.",
+    "price": 350,
+    "image": "images/butter chicken.jpeg",
+    "category": "All foods"
   },
   {
     "id": 5,
-    "name": "Shower Set",
-    "description": "Complete shower set with adjustable spray modes.",
-    "price": 3500,
-    "image": "/images/shower.jpg",
-    "category": "Sanitaryware"
+    "name": "BBQ Smokey Chicken",
+    "description": "Smoked BBQ chicken with tangy sauce and charred finish.",
+    "price": 300,
+    "image": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?q=80&w=500&auto=format&fit=crop",
+    "category": "All foods"
   },
   {
     "id": 6,
-    "name": "Ceramic Wash Basin",
-    "description": "Elegant ceramic wash basin with smooth finish.",
-    "price": 2500,
-    "image": "/images/wash-basin.jpg",
-    "category": "Sanitaryware"
+    "name": "Lemon Pepper Chicken",
+    "description": "Zesty lemon pepper seasoned chicken, crispy and flavorful.",
+    "price": 290,
+    "image": "images/lemon paperchicken.jpeg",
+    "category": "All foods"
   },
   {
     "id": 7,
-    "name": "Wall Mounted Toilet",
-    "description": "Compact wall-mounted toilet with modern design.",
-    "price": 4500,
-    "image": "/images/toilet.jpg",
-    "category": "Toilets"
+    "name": "Garlic Cheese Chicken",
+    "description": "Succulent chicken topped with melted cheese and garlic sauce.",
+    "price": 340,
+    "image": "images/garlic cheese.jpeg",
+    "category": "All foods"
   },
   {
     "id": 8,
-    "name": "Luxury Bathtub",
-    "description": "Spacious bathtub with premium build quality.",
-    "price": 12000,
-    "image": "/images/bathtub.jpg",
-    "category": "Bathtubs"
+    "name": "Hot & Spicy Combo",
+    "description": "Mixed chicken pieces with extreme spice levels for heat lovers.",
+    "price": 400,
+    "image": "images/spicy combo.jpeg",
+    "category": "All foods"
   },
   {
     "id": 9,
-    "name": "Chrome Faucet",
-    "description": "Durable chrome-plated faucet with sleek design.",
-    "price": 1500,
-    "image": "/images/faucet.jpg",
-    "category": "Faucets"
+    "name": "Honey Soy Glaze Chicken",
+    "description": "Sweet and savory chicken with honey soy glaze coating.",
+    "price": 310,
+    "image": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?q=80&w=500&auto=format&fit=crop",
+    "category": "All foods"
   },
   {
     "id": 10,
-    "name": "Shower Set",
-    "description": "Complete shower set with adjustable spray modes.",
-    "price": 3500,
-    "image": "/images/shower.jpg",
-    "category": "Showers"
+    "name": "Family Bucket Pack",
+    "description": "6 pieces of assorted chicken with fries and dips for family.",
+    "price": 650,
+    "image": "images/family bucket pack.jpeg",
+    "category": "All foods"
+  },
+  {
+    "id": 11,
+    "name": "Family Bucket Pack",
+    "description": "6 pieces of assorted chicken with fries and dips for family.",
+    "price": 650,
+    "image": "images/red chicken.png",
+    "category": "Chicken Gravy"
+
+  },
+  {
+    "id": 12,
+    "name": "Family Bucket Biryani Pack",
+    "description": "Biryani creamy delight with aromatic spices.",
+    "price": 650,
+    "image": "images/biryani.png",
+    "category": "Biryani"
+  },
+  {
+    "id": 12,
+    "name": "Hydrebadi Biryani Pack",
+    "description": "Biryani creamy delight with aromatic spice.",
+    "price": 650,
+    "image": "images/hyderabadi biryani.png",
+    "category": "Biryani"
+  },
+  {
+    "id": 12,
+    "name": "Moradbadi Biryani Pack",
+    "description": "Biryani creamy delight with aromatic spice.",
+    "price": 500,
+    "image": "images/moradabadi biryani.png",
+    "category": "Biryani"
+  },
+  {
+    "id": 13,
+    "name": "Royal Biryani Pack",
+    "description": "Biryani creamy delight with aromatic spice.",
+    "price": 500,
+    "image": "images/royal biryani.png",
+    "category": "Biryani"
   }
+  
 ]

@@ -1,43 +1,45 @@
-"use client";
-
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
 import Link from "next/link";
-
-const CART_STORAGE_KEY = "glanza-cart";
-
+const CART_STORAGE_KEY = "crispy-chicken-cart";
 const CATEGORY_FILTERS = {
   All: null,
-  SanitaryWare: ["Basins", "Toilets", "Faucets", "Showers"],
-  Faucets: ["Faucets"],
-  Luxury: ["Bathtubs"],
+  Grilled: ["Grilled"],
+  Fried: ["Fried"],
+  Tandoori: ["Tandoori"],
+  Curry: ["Curry"],
+  BBQ: ["BBQ"],
+  Specialty: ["Specialty", "Asian"],
+  Combo: ["Combo"],
+  Biryani: ["Biryani"],
+  Veg: ["Veg"],
+  "Chicken Gravy": ["Chicken Gravy"],
 };
-
 const CATEGORY_LABELS = {
-  All: "All Products",
-  SanitaryWare: "Sanitary Ware",
-  Faucets: "Faucets",
-  Luxury: "Luxury",
+  All: "All Chicken Menu",
+  Grilled: "Grilled Chicken",
+  Fried: "Fried Chicken",
+  Tandoori: "Tandoori",
+  Curry: "Curries",
+  BBQ: "BBQ",
+  Specialty: "Specialty",
+  Combo: "Combo Meals",
+  "Chicken Gravy": "Chicken Gravy",
 };
-
 export default function Home() {
-  const searchParams = useSearchParams();
-  const selectedCategory = searchParams.get("category") || "All";
-  const searchQuery = searchParams.get("search") || "";
-
+  const router = useRouter();
+  const selectedCategory = router.query.category || "All";
+  const searchQuery = router.query.search || "";
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-
   useEffect(() => {
     if (typeof window === "undefined") return;
-
     const stored = localStorage.getItem(CART_STORAGE_KEY);
     if (stored) {
       setCart(JSON.parse(stored));
     }
     setIsLoaded(true);
-
     fetch("/data/products.json")
       .then((res) => res.json())
       .then((data) => setProducts(data))
@@ -45,36 +47,29 @@ export default function Home() {
         console.error("Failed to load products:", error);
       });
   }, []);
-
   useEffect(() => {
     if (!isLoaded || typeof window === "undefined") return;
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
   }, [cart, isLoaded]);
-
   // Add To Cart Function
   const addToCart = (product) => {
     setCart((prev) => [...prev, product]);
     alert(`${product.name} added to cart! Go to cart to view or buy.`);
   };
-
   // Buy Now Function
   const buyNow = (product) => {
     alert(`Proceeding to buy ${product.name}`);
   };
-
   const removeFromCart = (index) => {
     setCart((prev) => prev.filter((_, itemIndex) => itemIndex !== index));
   };
-
   const filteredProducts = useMemo(() => {
     let result = products;
-
     // Filter by category
     const allowedCategories = CATEGORY_FILTERS[selectedCategory] || null;
     if (allowedCategories) {
       result = result.filter((product) => allowedCategories.includes(product.category));
     }
-
     // Filter by search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
@@ -84,12 +79,9 @@ export default function Home() {
         product.category.toLowerCase().includes(query)
       );
     }
-
     return result;
   }, [products, selectedCategory, searchQuery]);
-
   const activeLabel = searchQuery ? `Search: "${searchQuery}"` : CATEGORY_LABELS[selectedCategory] || selectedCategory;
-
   return (
     <div className="products">
       <div className="products-headline">
